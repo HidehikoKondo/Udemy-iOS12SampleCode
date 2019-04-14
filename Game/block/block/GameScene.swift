@@ -87,15 +87,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         //BLOCKに何かがぶつかったらブロックを消す
         if (contact.bodyA.node?.name == "BLOCK"){
-            //ブロックを消す
-            contact.bodyA.node?.removeFromParent()
             //パーティクル
             starParticle(node: contact.bodyA.node!)
-        }else if(contact.bodyB.node?.name == "BLOCK" ){
             //ブロックを消す
-            contact.bodyB.node?.removeFromParent()
+            contact.bodyA.node?.removeFromParent()
+        }else if(contact.bodyB.node?.name == "BLOCK" ){
             //パーティクル
             starParticle(node: contact.bodyB.node!)
+            //ブロックを消す
+            contact.bodyB.node?.removeFromParent()
         }
 
         //ブロックの数が0ならゲームクリア
